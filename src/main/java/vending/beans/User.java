@@ -61,4 +61,12 @@ public class User implements java.io.Serializable {
 	public void setMachine(Machine machine) {
 		this.machine = machine;
 	}
+	
+	public User() {
+		
+	}
+	
+	public User(long id) {
+		this.id = id;
+	}
 }
