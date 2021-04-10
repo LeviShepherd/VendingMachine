@@ -47,4 +47,12 @@ public class Item implements java.io.Serializable {
 	public void setMachine(Machine machine) {
 		this.machine = machine;
 	}
+	
+	public Item() {
+		
+	}
+	
+	public Item(long id) {
+		this.id = id;
+	}
 }

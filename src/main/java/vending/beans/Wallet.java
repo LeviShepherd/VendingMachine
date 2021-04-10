@@ -40,4 +40,12 @@ public class Wallet implements java.io.Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public Wallet() {
+		
+	}
+	
+	public Wallet(long id) {
+		this.id = id;
+	}
 }
