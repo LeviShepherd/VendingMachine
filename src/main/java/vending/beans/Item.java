@@ -7,18 +7,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Items")
-public class Item implements java.io.Serializable {
+public class Item {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private int quantity;
 	private double price;
 	private Machine machine;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Item() {
+		super();
+	}
+	
+	public Item(long id) {
+		super();
+		this.id = id;
+	}
+	
+	public Item(int quantity, double price) {
+		super();
+		this.quantity = quantity;
+		this.price = price;
+	}
+	
+	public Item(long id, int quantity, double price) {
+		super();
+		this.id = id;
+		this.quantity = quantity;
+		this.price = price;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -46,13 +66,5 @@ public class Item implements java.io.Serializable {
 	
 	public void setMachine(Machine machine) {
 		this.machine = machine;
-	}
-	
-	public Item() {
-		
-	}
-	
-	public Item(long id) {
-		this.id = id;
 	}
 }

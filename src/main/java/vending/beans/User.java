@@ -1,6 +1,7 @@
 package vending.beans;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -11,19 +12,39 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Users")
-public class User implements java.io.Serializable {
+public class User{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String firstName;
 	private String lastName;
-	private Set<Wallet> wallets = new HashSet<Wallet>(0);
+	private List<Wallet> wallets;
 	private Machine machine;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public User() {
+		super();
+	}
+	
+	public User(long id) {
+		super();
+		this.id = id;
+	}
+	
+	public User(String firstName, String lastName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public User(long id, String firstName, String lastName) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -44,11 +65,11 @@ public class User implements java.io.Serializable {
 	}
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Users")
-	public Set<Wallet> getWallets() {
+	public List<Wallet> getWallets() {
 		return this.wallets;
 	}
 	
-	public void setWallets(Set<Wallet> wallets) {
+	public void setWallets(List<Wallet> wallets) {
 		this.wallets = wallets;
 	}
 	
@@ -60,13 +81,5 @@ public class User implements java.io.Serializable {
 	
 	public void setMachine(Machine machine) {
 		this.machine = machine;
-	}
-	
-	public User() {
-		
-	}
-	
-	public User(long id) {
-		this.id = id;
 	}
 }
