@@ -7,17 +7,35 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Wallet")
-public class Wallet implements java.io.Serializable {
+public class Wallet {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private double balance;
 	private User user;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Wallet() {
+		super();
+	}
+	
+	public Wallet(long id) {
+		super();
+		this.id = id;
+	}
+	
+	public Wallet(double balance) {
+		super();
+		this.balance = balance;
+	}
+
+	public Wallet(long id, double balance) {
+		super();
+		this.id = id;
+		this.balance = balance;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -39,13 +57,5 @@ public class Wallet implements java.io.Serializable {
 	
 	public void setUser(User user) {
 		this.user = user;
-	}
-	
-	public Wallet() {
-		
-	}
-	
-	public Wallet(long id) {
-		this.id = id;
 	}
 }

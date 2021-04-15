@@ -1,24 +1,44 @@
 package vending.beans;
 
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Machines")
-public class Machine implements java.io.Serializable{
-	private long id;
-	private String details;
-	private Set<Item> items = new HashSet<Item>(0);
-	
+public class Machine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private String details;
+	private List<Item> items;
+	private List<User> users;
+	
+	public Machine() {
+		super();
+	}
+	
+	public Machine(long id) {
+		super();
+		this.id = id;
+	}
+	
+	public Machine(String details) {
+		super();
+		this.details = details;
+	}
+
+	public Machine(long id, String details) {
+		super();
+		this.id = id;
+		this.details = details;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -36,19 +56,20 @@ public class Machine implements java.io.Serializable{
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Machines")
-	public Set<Item> getItems() {
+	public List<Item> getItems() {
 		return this.items;
 	}
 	
-	public void setItems(Set<Item> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
-	
-	public Machine() {
-		
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Machines")
+	public List<User> getUsers() {
+		return this.users;
 	}
 	
-	public Machine(long id) {
-		this.id = id;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 }
