@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.whymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert New Vendor</title>
+</head>
+<body>
+
+<form th:object="${newMachine}" th:action="@{/update/{id}(id=${newMachine.id})}" method=POST>
+Vendor Details: <input details="details" size="20" th:field="*{details}"><br />
+<input name="submit" type="submit" value="submit" />
+</form>
+
+<a href="viewAll">View all Vendors</a>
+</body>
+</html>

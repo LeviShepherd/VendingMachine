@@ -17,20 +17,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import vending.beans.Machine;
+import vending.repos.ItemRepository;
+import vending.repos.UserRepository;
 import vending.repos.VendingRepository;
+import vending.repos.WalletRepository;
 
 @Controller
 public class WebController {
 	@Autowired
-	VendingRepository repo;
+	VendingRepository vendingRepo;
+	@Autowired
+	UserRepository userRepo;
+	@Autowired
+	ItemRepository itemRepo;
+	@Autowired
+	WalletRepository walletRepo;
 	
 	@GetMapping({ "/", "viewAll" })
 	public String viewAllMachines(Model model) {
-		if(repo.findAll().isEmpty()) {
+		if(vendingRepo.findAll().isEmpty()) {
 			return addNewMachine(model);
 		}
 		
-		model.addAttribute("machines", repo.findAll());
+		model.addAttribute("machines", vendingRepo.findAll());
 		return "vendors";
 	}
 	
@@ -43,15 +52,15 @@ public class WebController {
 	}
 	
 	@PostMapping("/inputMachine")
-	public String addNewContact(@ModelAttribute Machine m, Model model) {
-		repo.save(m);
+	public String addNewMachine(@ModelAttribute Machine m, Model model) {
+		vendingRepo.save(m);
 		
 		return viewAllMachines(model);
 	}
 	
 	@GetMapping("/edit?{id}")
 	public String showUpdateMachine(@PathVariable("id") long id, Model model) {
-		Machine m = repo.findById(id).orElse(null);
+		Machine m = vendingRepo.findById(id).orElse(null);
 		model.addAttribute("newMachine", m);
 		
 		return "input";
@@ -59,14 +68,14 @@ public class WebController {
 	
 	@PostMapping("/update/{id}")
 	public String reviseMachine(Machine m, Model model) {
-		repo.save(m);
+		vendingRepo.save(m);
 		return viewAllMachines(model);
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteVendor(@PathVariable("id") long id, Model model) {
-		Machine m = repo.findById(id).orElse(null);
-		repo.delete(m);
+		Machine m = vendingRepo.findById(id).orElse(null);
+		vendingRepo.delete(m);
 		
 		return viewAllMachines(model);
 	}

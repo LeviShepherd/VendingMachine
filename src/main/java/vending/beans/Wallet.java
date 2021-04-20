@@ -14,7 +14,6 @@ public class Wallet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private double balance;
-	private User user;
 	
 	public Wallet() {
 		super();
@@ -48,14 +47,5 @@ public class Wallet {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "UserID", nullable = false)
-	public User getUser() {
-		return user;
-	}
-	
-	public void setUser(User user) {
-		this.user = user;
-	}
+
 }

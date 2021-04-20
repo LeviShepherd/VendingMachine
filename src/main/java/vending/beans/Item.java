@@ -15,7 +15,6 @@ public class Item {
 	private long id;
 	private int quantity;
 	private double price;
-	private Machine machine;
 	
 	public Item() {
 		super();
@@ -56,15 +55,5 @@ public class Item {
 	}
 	public void setPrice(double price) {
 		this.price = price;
-	}
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MachineID", nullable = false)
-	public Machine getMachine() {
-		return machine;
-	}
-	
-	public void setMachine(Machine machine) {
-		this.machine = machine;
 	}
 }

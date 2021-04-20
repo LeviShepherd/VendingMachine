@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,8 +21,6 @@ public class User{
 	private long id;
 	private String firstName;
 	private String lastName;
-	private List<Wallet> wallets;
-	private Machine machine;
 	
 	public User() {
 		super();
@@ -62,24 +61,5 @@ public class User{
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Users")
-	public List<Wallet> getWallets() {
-		return this.wallets;
-	}
-	
-	public void setWallets(List<Wallet> wallets) {
-		this.wallets = wallets;
-	}
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MachineID", nullable = false)
-	public Machine getMachine() {
-		return machine;
-	}
-	
-	public void setMachine(Machine machine) {
-		this.machine = machine;
 	}
 }
