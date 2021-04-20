@@ -21,28 +21,28 @@ import vending.repos.VendingRepository;
 
 
 @SpringBootApplication
-public class VendingMachineApplication implements CommandLineRunner {
+public class VendingMachineApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VendingMachineApplication.class, args);
 	}
 
-	@Autowired 
-	VendingRepository repo;
-	
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
-		
-		Machine m = appContext.getBean("machine", Machine.class);
-		
-		System.out.println(m.getUsers());
-		
-		List<Machine> allMyMachines = repo.findAll();
-		for(Machine vendors: allMyMachines) {
-			System.out.println(vendors.toString());
-		}
-		((AbstractApplicationContext) appContext).close();
-	}
+//	@Autowired 
+//	VendingRepository repo;
+//	
+//	@Override
+//	public void run(String... args) throws Exception {
+//		// TODO Auto-generated method stub
+//		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+//		
+//		Machine m = appContext.getBean("machine", Machine.class);
+//		
+//		System.out.println(m.getUsers());
+//		
+//		List<Machine> allMyMachines = repo.findAll();
+//		for(Machine vendors: allMyMachines) {
+//			System.out.println(vendors.toString());
+//		}
+//		((AbstractApplicationContext) appContext).close();
+//	}
 }

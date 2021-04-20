@@ -21,7 +21,6 @@ public class BeanConfiguration {
 		public Machine machine() {
 			Machine bean = new Machine(000001);
 			bean.setDetails("First itteration of Vending Machines MK1 000001");
-			bean.setItems(null);
 			return bean;
 		}
 		
