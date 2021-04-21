@@ -31,9 +31,9 @@ public class VendingMachineApplication {
 //	VendingRepository repo;
 //	
 //	@Override
-	public void run(String... args) throws Exception {
+//	public void run(String... args) throws Exception {
 //		// TODO Auto-generated method stub
-		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+/*		ApplicationContext appContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
 		
 		Machine m = appContext.getBean("machine", Machine.class);
 		
@@ -57,5 +57,5 @@ public class VendingMachineApplication {
 			System.out.println(vendors.toString());
 		}
 		((AbstractApplicationContext) appContext).close();
-	}
+	}*/
 }
