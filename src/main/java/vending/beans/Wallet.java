@@ -47,5 +47,20 @@ public class Wallet {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
+	
+	//methods
+	
+	public void subtractFromBalance(double toSubtract) {
+		if(toSubtract > this.balance) {
+			System.out.println("Balance is lower than requested amount");
+			System.out.println("Balance: " + this.balance + " Requested amount: " + toSubtract);
+		}
+		else {
+			double newBalance = this.balance - toSubtract;
+			setBalance(newBalance);
+			System.out.println("The new current balance for this account is: " + newBalance);
+		}
+	}
+	
 
 }

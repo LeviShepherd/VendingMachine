@@ -79,4 +79,5 @@ public class WebController {
 		
 		return viewAllMachines(model);
 	}
+	
 }
