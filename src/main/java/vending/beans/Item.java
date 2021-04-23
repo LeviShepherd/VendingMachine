@@ -56,4 +56,15 @@ public class Item {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	//methods
+	public void subtractFromQuantity(int toSubtract) {
+		if(toSubtract > this.quantity) {
+			System.out.println("This item is out of stock!");
+		}
+		else {
+			int newQuantity = this.quantity - toSubtract;
+			setQuantity(newQuantity);
+		}
+	}
 }
