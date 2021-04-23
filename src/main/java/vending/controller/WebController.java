@@ -40,44 +40,54 @@ public class WebController {
 		}
 		
 		model.addAttribute("machines", vendingRepo.findAll());
-		return "vendors";
+		return "vendors.html";
 	}
 	
-	@GetMapping("/inputMachine")
+	@GetMapping({ "/", "viewAllAdmin" })
+	public String viewAllMachinesAdmin(Model model) {
+		if(vendingRepo.findAll().isEmpty()) {
+			return addNewMachine(model);
+		}
+		
+		model.addAttribute("machines", vendingRepo.findAll());
+		return "vendors-admin.html";
+	}
+	
+	@GetMapping("inputMachine")
 	public String addNewMachine(Model model) {
 		Machine m = new Machine();
 		model.addAttribute("newMachine", m);
 		
-		return "input";
+		return "input-machine.html";
 	}
 	
-	@PostMapping("/inputMachine")
+	@PostMapping("inputMachine")
 	public String addNewMachine(@ModelAttribute Machine m, Model model) {
 		vendingRepo.save(m);
 		
-		return viewAllMachines(model);
+		return viewAllMachinesAdmin(model);
 	}
 	
-	@GetMapping("/edit?{id}")
+	@GetMapping("/editMachine/{id}")
 	public String showUpdateMachine(@PathVariable("id") long id, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		model.addAttribute("newMachine", m);
 		
-		return "input";
+		return "input-machine.html";
 	}
 	
-	@PostMapping("/update/{id}")
+	@PostMapping("/updateMachine/{id}")
 	public String reviseMachine(Machine m, Model model) {
 		vendingRepo.save(m);
-		return viewAllMachines(model);
+		return "admin.html";
 	}
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/deleteMachine/{id}")
 	public String deleteVendor(@PathVariable("id") long id, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		vendingRepo.delete(m);
 		
-		return viewAllMachines(model);
+		return viewAllMachinesAdmin(model);
 	}
 	
 }
