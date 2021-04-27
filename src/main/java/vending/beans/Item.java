@@ -40,16 +40,22 @@ public class Item {
 		this.quantity = quantity;
 		this.price = price;
 	}
+	
+	public Item(long id, String name, int quantity, double price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.quantity = quantity;
+		this.price = price;
+	}
 
 
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public long getId() {
 		return id;
 	}

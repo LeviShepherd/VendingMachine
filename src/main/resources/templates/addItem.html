@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.whymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add Item</title>
+</head>
+<body>
+
+<form th:object="${newItem}" th:action="@{/updateItem/{id}(id=${newItem.id})}" method=POST>
+Item Name: <input name="name" size="20" th:field="*{name}"><br />
+Item Quantity: <input quantity="quantity" size="3" th:field="*{quantity)"><br />
+Item Price: <input price="price" size="5" th:field="*{price}"><br />
+<input name="submit" type="submit" value="submit" />
+</form>
+
+<a href="viewAll">View all Vendors</a>
+</body>
+</html>
