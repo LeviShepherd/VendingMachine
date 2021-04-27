@@ -34,7 +34,7 @@ public class WebController {
 	@Autowired
 	WalletRepository walletRepo;
 	
-	@GetMapping({ "/", "viewAll" })
+	@GetMapping({ "viewAll" })
 	public String viewAllMachines(Model model) {
 		if(vendingRepo.findAll().isEmpty()) {
 			return addNewMachine(model);
@@ -44,7 +44,7 @@ public class WebController {
 		return "vendors.html";
 	}
 	
-	@GetMapping({ "/", "viewAllAdmin" })
+	@GetMapping({ "viewAllAdmin" })
 	public String viewAllMachinesAdmin(Model model) {
 		if(vendingRepo.findAll().isEmpty()) {
 			return addNewMachine(model);
@@ -160,7 +160,7 @@ public class WebController {
 		return null;
 	}
 	
-	@GetMapping("Index")
+	@GetMapping({ "/", "Index" })
 	public String index(Model model) {
 		return "index.html";
 	}

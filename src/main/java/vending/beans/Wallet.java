@@ -15,6 +15,7 @@ public class Wallet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private long userId;
 	private double balance;
 	
 	public Wallet() {
@@ -37,6 +38,13 @@ public class Wallet {
 		this.balance = balance;
 	}
 
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 	public long getId() {
 		return id;
 	}

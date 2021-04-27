@@ -19,6 +19,8 @@ public class Machine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String details;
+	@OneToMany
+	List<Item> items;
 	
 	public Machine() {
 		super();

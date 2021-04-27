@@ -35,6 +35,7 @@ public class BeanConfiguration {
 		@Bean
 		public User user() {
 			User bean = new User(01);
+			bean.setMachineId(1);
 			bean.setFirstName("Jane");
 			bean.setLastName("Doe");
 			return bean;
@@ -43,6 +44,7 @@ public class BeanConfiguration {
 		@Bean
 		public Wallet wallet() {
 			Wallet bean = new Wallet(1);
+			bean.setUserId(1);
 			bean.setBalance(0);
 			return bean;
 		}
