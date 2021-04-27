@@ -1,11 +1,16 @@
 package vending.repos;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
 
 import vending.beans.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
+	@Query("SELECT u from Users u")
+	Collection<User> findAllUsers();
 }
