@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import vending.beans.Item;
 import vending.beans.Machine;
 import vending.repos.ItemRepository;
 import vending.repos.UserRepository;
@@ -119,12 +120,39 @@ public class WebController {
 	
 	@GetMapping("/addItem/{id}")
 	public String addItem(@PathVariable("id") long id, Model model) {
-		return null;
+		Item i = new Item();
+		model.addAttribute("newItem", i);
+			
+		return "addItem.html";
+	}
+	
+	@PostMapping("/addItem/{id}")
+	public String addItem(@ModelAttribute Item i, Model model) {
+		itemRepo.save(i);
+		
+		return "items.html";
+	}
+	
+	@GetMapping("/editItem/{id}")
+	public String editItem(@PathVariable("id") long id, Model model) {
+		Machine m = vendingRepo.findById(id).orElse(null);
+		Item i = itemRepo.findById(id).orElse(null);
+		model.addAttribute("items", i);
+		
+		return "items.html";
 	}
 	
 	@GetMapping("/deleteItem/{id}") 
 	public String deleteItem(@PathVariable("id") long id, Model model) {
 		return null;
+	}
+	
+	@PostMapping("/updateItem/{id}")
+	public String updateItem(Item i, Model model) {
+		itemRepo.save(i);
+		
+		model.addAttribute("items", itemRepo.findAll());
+		return "items.html";
 	}
 	
 	@GetMapping("/makeTransaction/{id}")
