@@ -22,6 +22,7 @@ public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private long machineId;
 	private String firstName;
 	private String lastName;
 
@@ -47,6 +48,13 @@ public class User{
 		this.lastName = lastName;
 	}
 
+	public long getMachineId() {
+		return machineId;
+	}
+
+	public void setMachineId(long machineId) {
+		this.machineId = machineId;
+	}
 	public long getId() {
 		return id;
 	}

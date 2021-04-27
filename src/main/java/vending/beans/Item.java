@@ -15,9 +15,10 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private String description;
 	private int quantity;
 	private double price;
-	
+
 	public Item() {
 		super();
 	}
@@ -38,6 +39,15 @@ public class Item {
 		this.id = id;
 		this.quantity = quantity;
 		this.price = price;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public long getId() {
