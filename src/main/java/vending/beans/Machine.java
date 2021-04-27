@@ -39,6 +39,8 @@ public class Machine {
 		this.id = id;
 		this.details = details;
 	}
+	
+	public Item items[];
 
 	public long getId() {
 		return id;
