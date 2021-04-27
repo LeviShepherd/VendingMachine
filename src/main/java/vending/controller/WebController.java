@@ -79,7 +79,9 @@ public class WebController {
 	@PostMapping("/updateMachine/{id}")
 	public String reviseMachine(Machine m, Model model) {
 		vendingRepo.save(m);
-		return "admin.html";
+		
+		model.addAttribute("machines", vendingRepo.findAll());
+		return "vendors-admin.html";
 	}
 	
 	@GetMapping("/deleteMachine/{id}")
@@ -88,6 +90,51 @@ public class WebController {
 		vendingRepo.delete(m);
 		
 		return viewAllMachinesAdmin(model);
+	}
+	
+	@GetMapping("/viewItems/{id}")
+	public String viewItems(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("/addUser/{id}")
+	public String addUser(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("/deleteUser/{id}")
+	public String deleteUser(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("/addWallet/{id}") 
+	public String addWallet(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("/deleteWallet/{id}") 
+		public String deleteWallet(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("/addItem/{id}")
+	public String addItem(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("/deleteItem/{id}") 
+	public String deleteItem(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("/makeTransaction/{id}")
+	public String makeTransaction(@PathVariable("id") long id, Model model) {
+		return null;
+	}
+	
+	@GetMapping("Index")
+	public String index(Model model) {
+		return "index.html";
 	}
 	
 }
