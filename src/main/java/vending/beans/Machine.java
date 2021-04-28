@@ -41,8 +41,18 @@ public class Machine {
 		this.id = id;
 		this.details = details;
 	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
 	
-	public Item items[];
+	public void addItems(Item item) {
+		this.items.add(item);
+	}
 
 	public long getId() {
 		return id;

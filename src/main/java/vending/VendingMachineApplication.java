@@ -15,7 +15,6 @@ import org.springframework.context.support.AbstractApplicationContext;
 import vending.beans.Item;
 import vending.beans.Machine;
 import vending.beans.User;
-import vending.beans.Wallet;
 import vending.controller.BeanConfiguration;
 import vending.repos.VendingRepository;
 

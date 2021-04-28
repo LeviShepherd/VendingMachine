@@ -10,6 +10,6 @@ import vending.beans.Machine;
 
 @Repository
 public interface VendingRepository extends JpaRepository<Machine, Long> {
-	@Query("SELECT m from Machines m")
-	Collection<Machine> findAllMachines(); 
+	//@Query("SELECT m from Machines m")
+	//Collection<Machine> findAllMachines(); 
 }

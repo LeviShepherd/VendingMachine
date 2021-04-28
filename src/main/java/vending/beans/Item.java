@@ -41,10 +41,10 @@ public class Item {
 		this.price = price;
 	}
 	
-	public Item(long id, String name, int quantity, double price) {
+	public Item(long id, String description, int quantity, double price) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.description = description;
 		this.quantity = quantity;
 		this.price = price;
 	}

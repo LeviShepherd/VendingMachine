@@ -12,7 +12,7 @@
 <td th:text="${currentMachine.id}" />
 <td th:text="${currentMachine.details}" />
 <td><a th:href="@{/editMachine/{id}(id=${currentMachine.id})}">Edit Vendor</a></td>
-<td><a th:href="@{/editItem/{id}(id=${currentMachine.id})}">Edit Vendor Items</a>
+<td><a th:href="@{/showEditItems/{id}(id=${currentMachine.id})}">Show Vendor Items</a>
 <td><a th:href="@{/deleteMachine/{id}(id=${currentMachine.id})}">Delete Vendor</a></td>
 </tr>
 </table>
