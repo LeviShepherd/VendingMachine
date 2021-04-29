@@ -70,14 +70,18 @@ public class WebController {
 	@GetMapping("/editMachine/{id}")
 	public String showUpdateMachine(@PathVariable("id") long id, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
+		System.out.println(m);
 		model.addAttribute("newMachine", m);
 		
 		return "input-machine.html";
 	}
 	
 	@PostMapping("/updateMachine/{id}")
-	public String reviseMachine(Machine m, Model model) {
-		vendingRepo.save(m);
+	public String reviseMachine(@PathVariable("id") long id, Machine m, Model model) {
+		Machine revised = vendingRepo.findById(id).orElse(null);
+		System.out.println(revised.toString());
+		revised.setDetails(m.getDetails());
+		vendingRepo.save(revised);
 		
 		model.addAttribute("machines", vendingRepo.findAll());
 		return "vendors-admin.html";
@@ -113,11 +117,12 @@ public class WebController {
 	@PostMapping("/addItem/{id}")
 	public String addItem(@PathVariable("id") long id, @ModelAttribute Item i, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
+		
+		itemRepo.save(i);
 		m.addItems(i);
-		//itemRepo.save(i);
 		vendingRepo.save(m);
 		
-		return "items.html";
+		return editItem(id, model);
 	}
 	
 	@GetMapping("/showEditItems/{id}")

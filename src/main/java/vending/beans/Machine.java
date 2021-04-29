@@ -74,4 +74,9 @@ public class Machine {
 	public void setDetails(String details) {
 		this.details = details;
 	}
+
+	@Override
+	public String toString() {
+		return "Machine [id=" + id + ", details=" + details + ", items=" + items + "]";
+	}
 }
