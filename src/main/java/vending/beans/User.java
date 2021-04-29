@@ -1,11 +1,14 @@
 package vending.beans;
 
+import java.util.List;
+
 public class User{
 
 	private long id;
 	private long machineId;
 	private String firstName;
 	private String lastName;
+	private List<Item> items;
 
 	public User() {
 		super();
@@ -27,6 +30,27 @@ public class User{
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
+	}
+
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	
+	public void addItems(Item item) {
+		this.items.add(item);
+	}
+	
+	public double checkOut() {
+		double total = 0;
+		for(Item item : items) {
+			total += item.getPrice();
+		}
+		return total;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	public long getMachineId() {

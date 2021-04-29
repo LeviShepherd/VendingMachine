@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import vending.beans.Item;
 import vending.beans.Machine;
+import vending.beans.User;
 import vending.repos.ItemRepository;
 import vending.repos.VendingRepository;
 
@@ -29,6 +30,7 @@ public class WebController {
 	VendingRepository vendingRepo;
 	@Autowired
 	ItemRepository itemRepo;
+	User user = new User();
 	
 	@GetMapping({ "viewAll" })
 	public String viewAllMachines(Model model) {
@@ -112,7 +114,7 @@ public class WebController {
 	public String addItem(@PathVariable("id") long id, @ModelAttribute Item i, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		m.addItems(i);
-		itemRepo.save(i);
+		//itemRepo.save(i);
 		vendingRepo.save(m);
 		
 		return "items.html";
