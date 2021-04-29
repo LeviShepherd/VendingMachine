@@ -16,7 +16,6 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String description;
-	private int quantity;
 	private double price;
 
 	public Item() {
@@ -28,24 +27,16 @@ public class Item {
 		this.id = id;
 	}
 	
-	public Item(int quantity, double price) {
+	public Item(String description, double price) {
 		super();
-		this.quantity = quantity;
+		this.description = description;
 		this.price = price;
 	}
 	
-	public Item(long id, int quantity, double price) {
-		super();
-		this.id = id;
-		this.quantity = quantity;
-		this.price = price;
-	}
-	
-	public Item(long id, String description, int quantity, double price) {
+	public Item(long id, String description, double price) {
 		super();
 		this.id = id;
 		this.description = description;
-		this.quantity = quantity;
 		this.price = price;
 	}
 
@@ -62,27 +53,10 @@ public class Item {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
 	public double getPrice() {
 		return price;
 	}
 	public void setPrice(double price) {
 		this.price = price;
-	}
-	
-	//methods
-	public void subtractFromQuantity(int toSubtract) {
-		if(toSubtract > this.quantity) {
-			System.out.println("This item is out of stock!");
-		}
-		else {
-			int newQuantity = this.quantity - toSubtract;
-			setQuantity(newQuantity);
-		}
 	}
 }

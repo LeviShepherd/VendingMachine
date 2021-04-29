@@ -6,13 +6,12 @@
 </head>
 <body>
 
-<form th:object="${newItem}" th:action="@{/updateItem/{id}(id=${newItem.id})}" method=POST>
-Item Name: <input name="name" size="20" th:field="*{name}"><br />
-Item Quantity: <input quantity="quantity" size="3" th:field="*{quantity)"><br />
-Item Price: <input price="price" size="5" th:field="*{price}"><br />
+<form th:object="${newItem}" th:action="@{/addItem/{id}(id=${currentMachine.id})}" method=POST>
+Item Name: <input name="description" size="20" th:field="*{description}"><br />
+Item Price: <input name="price" size="5" th:field="*{price}"><br />
 <input name="submit" type="submit" value="submit" />
 </form>
 
-<a href="viewAll">View all Vendors</a>
+<a href="../viewAllAdmin">View all Vendors</a>
 </body>
 </html>

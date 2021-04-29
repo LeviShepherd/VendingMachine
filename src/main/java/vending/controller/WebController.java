@@ -20,12 +20,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import vending.beans.Item;
 import vending.beans.Machine;
+import vending.repos.ItemRepository;
 import vending.repos.VendingRepository;
 
 @Controller
 public class WebController {
 	@Autowired
 	VendingRepository vendingRepo;
+	@Autowired
+	ItemRepository itemRepo;
 	
 	@GetMapping({ "viewAll" })
 	public String viewAllMachines(Model model) {
@@ -97,8 +100,10 @@ public class WebController {
 	
 	@GetMapping("/addItem/{id}")
 	public String addItem(@PathVariable("id") long id, Model model) {
+		Machine m = vendingRepo.findById(id).orElse(null);
 		Item i = new Item();
 		model.addAttribute("newItem", i);
+		model.addAttribute("currentMachine", m);
 			
 		return "addItem.html";
 	}
@@ -107,6 +112,7 @@ public class WebController {
 	public String addItem(@PathVariable("id") long id, @ModelAttribute Item i, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		m.addItems(i);
+		itemRepo.save(i);
 		vendingRepo.save(m);
 		
 		return "items.html";
@@ -116,7 +122,11 @@ public class WebController {
 	public String editItem(@PathVariable("id") long id, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		List<Item> items = m.getItems();
+		if(items == null) {
+			return addItem(id, model);
+		}
 		model.addAttribute("items", items);
+		model.addAttribute("currentMachine", m);
 		
 		return "items.html";
 	}
@@ -126,10 +136,11 @@ public class WebController {
 		return null;
 	}
 	
-	@PostMapping("/updateItem/{id}/{index}")
-	public String updateItem(Item i, @PathVariable("id") long id, @PathVariable("index") int index, Model model) {
+	@PostMapping("/updateItem/{id}")
+	public String updateItem(Item i, @PathVariable("id") long id, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		m.addItems(i);
+		itemRepo.save(i);
 		vendingRepo.save(m);
 		List<Item> items = m.getItems();
 		model.addAttribute("items", items);
