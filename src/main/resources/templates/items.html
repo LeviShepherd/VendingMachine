@@ -10,9 +10,8 @@
 <table>
 <tr th:each="currentItem : ${items}">
 	<td th:text="${currentItem.id}" />
-	<td th:text="${currentItem.name}" />
+	<td th:text="${currentItem.description}" />
 	<td th:text="${currentItem.price}"/>
-
 </tr>
 </table>
 </form>
