@@ -26,8 +26,8 @@ public class BeanConfiguration {
 		@Bean
 		public Item item() {
 			Item bean = new Item(001);
+			bean.setDescription("Coffee");
 			bean.setPrice(0.00);
-			bean.setQuantity(60);
 			return bean;
 		}
 }

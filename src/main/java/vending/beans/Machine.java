@@ -53,6 +53,11 @@ public class Machine {
 	public void addItems(Item item) {
 		this.items.add(item);
 	}
+	
+	public void removeItem(Item item) {
+		int i = items.indexOf(item);
+		items.remove(i);
+	}
 
 	public long getId() {
 		return id;

@@ -11,14 +11,12 @@
 <tr th:each="currentItem : ${items}">
 <td th:text="${currentItem.id}" />
 <td th:text="${currentItem.name}" />
-<td th:text="${currentItem.quantity}"/>
 <td th:text="${currentItem.price}"/>
-<td><a th:href="@{/addItem/{id}(id=${currentMachine.id})}">Add Items</a></td>
 
 </tr>
 </table>
 </form>
-<a href="addItem">Add Item</a>
-<a href="viewAllAdmin">Back To Vendors</a>
+<a th:href="@{../addItem/{id}(id=${currentMachine.id})}">Add Items</a>
+<a href="../viewAllAdmin">Back To Vendors</a>
 </body>
 </html>
