@@ -1,7 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Vending Machine</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
 <body>
-<body>
+	<div class="container">
+		<div class="w3-container w3-green">
+			<h1>Vending Machine Program</h1>
+			<p>Please continue as either a user or admin</p>
+		</div>
+		<div class="w3-row-padding">
+			<!-- First Column -->
+			<div class="w3-third">
+				<h3>
+					<button type="button">
+						<a href="">Continue as User</a>		<!-- Add link for user landing page -->
+					</button>
+				</h3>
+				<p>Find a vending machine item you'd like to buy, or simply browse!</p>
+			</div>
+			<!-- Second Column -->
+			<div class="w3-third">
+				<h3>
+					<button type="button">
+						<a href="">Continue as Admin</a>	<!-- Add link for admin landing page -->
+					</button>
+				</h3>
+				<p>For employee use, checking sales for machines and other administrative features.</p>
+			</div>
+			<!-- Third Column -->
+			<div class="w3-third">
+				<h3>
+					<button type="button">
+						<a href="https://github.com/LeviShepherd/VendingMachine" target="_blank" rel="noopener noreferrer">View the Source</a>	
+					</button>
+				</h3>
+				<p>Created by:</p>
+				<ul>
+					<li>Levi Shepherd</li>
+					<li>Isaiah Wertz</li>
+					<li>Tyler Wuebker</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 <form>
 <table>
 <tr th:each="currentMachine : ${machines}">
