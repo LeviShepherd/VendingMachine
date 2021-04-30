@@ -123,8 +123,12 @@ public class WebController {
 	public String addItem(@PathVariable("id") long id, @ModelAttribute Item i, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		List<Item> items = itemRepo.findAll();
-		Item item = items.get(items.size() - 1);
-		i.setId(item.getId() + 1);
+		if (items.size() > 0) {
+			Item item = items.get(items.size() - 1);
+			i.setId(item.getId() + 1);
+		} else {
+			i.setId(0);
+		}
 		itemRepo.save(i);
 		m.addItems(i);
 		vendingRepo.save(m);
@@ -166,13 +170,29 @@ public class WebController {
 		return null;
 	}
 	
-	@GetMapping({ "/", "index" })
-	public String index(Model model) {
+	@GetMapping("/user")
+	public String user(Model model) {
 		List<Machine> machines = vendingRepo.findAll();
 		
 		model.addAttribute("machines", machines);
 		
+		return "user.html";
+	}
+	
+	@GetMapping({ "/", "index" })
+	public String index(Model model) {
 		return "index.html";
+	}
+	
+	@GetMapping("/checkOut")
+	public String checkOut(Model model) {
+		List<Item> items = user.getItems();
+		double cost = user.getCost();
+		
+		model.addAttribute("items", items);
+		model.addAttribute("cost", cost);
+		
+		return "check-out.html";
 	}
 	
 }

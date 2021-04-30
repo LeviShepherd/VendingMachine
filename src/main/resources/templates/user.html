@@ -8,7 +8,18 @@
 </head>
 <body>
 	<div class="container">
-		<p>This is a placeholder to view/select from existing vending machines for users.</p>
+		<form>
+<table>
+<tr th:each="currentMachine : ${machines}">
+	<td th:text="${currentMachine.id}" />
+	<td th:text="${currentMachine.details}" />
+	<td><a th:href="@{/viewItems/{id}(id=${currentMachine.id})}">View Vendor Items</a></td>
+</tr>
+</table>
+</form>
+<br />
+<a href="../index">Back To Index</a>
+<br />
 	</div>
 </body>
 </html>

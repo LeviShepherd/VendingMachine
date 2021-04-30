@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Vending Machine - Check Out</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+	<div class="container">
+		<h3>Items to check out</h3>
+		<form>
+			<table>
+				<tr th:each="currentItem : ${items}">
+					<td th:text="${currentItem.id}" />
+					<td th:text="${currentItem.description}" />
+					<td th:text="${currentItem.price}" />
+				</tr>
+			</table>
+		</form>
+		<h3>Total: <span th:text="${cost}"></span></h3>
+	</div>
+</body>
+</html>
