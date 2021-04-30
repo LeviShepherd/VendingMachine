@@ -2,15 +2,30 @@
 <html xmlns:th="http://www.whymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Insert New Vendor</title>
+<style>
+	form {display: flex;
+		  align-items: center;
+		  flex-direction: column;}
+	</style>
 </head>
 <body>
-
-<form th:object="${newMachine}" th:action="@{/inputMachine}" method=POST>
-Vendor Details: <input details="details" size="20" th:field="*{details}"><br />
-<input name="submit" type="submit" value="submit" />
-</form>
-
-<a href="../viewAllAdmin">View all Vendors</a>
+<div class="container">
+	<div class="w3-container w3-green">
+		<h1 style="text-align: center">Add Vendor</h1>
+		<h4 style="text-align: center">Admin</h4>
+	</div>
+		<form th:object="${newMachine}" th:action="@{/inputMachine}" method=POST>
+		<h2>Vendor Details:</h2> <input details="details" size="20" th:field="*{details}"><br />
+		<input name="submit" type="submit" value="submit" />
+		</form>
+<div style="text-align: center">	
+<button style="text-align: center" type="button">
+	<a href="../viewAllAdmin">View all Vendors</a>
+</button>
+</div>
+</div>
 </body>
 </html>

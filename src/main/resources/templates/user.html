@@ -5,21 +5,41 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+	form {display: flex;
+		  align-items: center;
+		  flex-direction: column;}
+	</style>
 </head>
 <body>
 	<div class="container">
+		<div class="w3-container w3-green" style="text-align:center">
+			<h1>Vending Machine User</h1>
+			<h4>User</h4>
+		</div>
 		<form>
-<table>
-<tr th:each="currentMachine : ${machines}">
-	<td th:text="${currentMachine.id}" />
-	<td th:text="${currentMachine.details}" />
-	<td><a th:href="@{/viewItems/{id}(id=${currentMachine.id})}">View Vendor Items</a></td>
-</tr>
-</table>
-</form>
-<br />
-<a href="../index">Back To Index</a>
-<br />
+			<h3>Select from a vending machine to view items:</h3>
+			<table>
+			<tr>
+				<th>ID</th>
+				<th>Product</th>
+			</tr>
+			<tr th:each="currentMachine : ${machines}">
+				<td th:text="${currentMachine.id}" />
+				<td th:text="${currentMachine.details}" />
+				<td><a th:href="@{/viewItems/{id}(id=${currentMachine.id})}">View Items</a></td>
+			</tr>
+			</table>
+			<br />
+		<button type="button">
+			<a href="/checkOut">Checkout</a>
+		</button>
+		<br />
+		<button type="button">
+			<a href="../index">Back To Index</a>
+		</button>
+		<br />
+		</form>
 	</div>
 </body>
 </html>

@@ -1,21 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Vendor Items List</title>
+	<title>Vending Machine - User</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+	form {display: flex;
+		  align-items: center;
+		  flex-direction: column;}
+	</style>
 </head>
 <body>
-<h3>View Items</h3>
-<form>
-<table>
-<tr th:each="currentItem : ${items}">
-	<td th:text="${currentItem.id}" />
-	<td th:text="${currentItem.description}" />
-	<td th:text="${currentItem.price}"/>
-	<td><a th:href="@{../../buyItem/{id}/{index}(id=${currentMachine.id}, index=${currentItem.id})}">Buy Item</a></td>
-</tr>
-</table>
-</form>
-<a href="../../index">Back To Vendors</a>
+<div class="container">
+		<div class="w3-container w3-green">
+			<h1 style="text-align: center">View and Purchase Items</h1>
+			<h4 style="text-align: center">User</h4>
+		</div>
+		
+		<form>
+		<h3>Vending Machine Items</h3>
+			<table>
+			<tr>
+				<th>ID</th>
+				<th>Product</th>
+				<th></th>
+				<th>Price</th>
+			</tr>
+				<tr th:each="currentItem : ${items}">
+					<td th:text="${currentItem.id}" />
+					<td th:text="${currentItem.description}" />
+					<td>$
+					<td th:text="${currentItem.price}"/>
+					<td><a th:href="@{../../buyItem/{id}/{index}(id=${currentMachine.id}, index=${currentItem.id})}">Buy Item</a></td>
+				</tr>
+			</table>
+			<br />
+			<br />
+			<button type="button">
+				<a href="/user">Back</a>
+			</button>
+			<br />
+		</form>
+	</div>
 </body>
 </html>
