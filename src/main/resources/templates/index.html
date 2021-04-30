@@ -2,11 +2,17 @@
 <html xmlns:th="http://thymeleaf.org">
 <body>
 <body>
-<a href="selection">Make a selection</a>
-<a href="balance">Check user balance</a>
-<a href="viewAll">View all Vendors</a><br />
+<form>
+<table>
+<tr th:each="currentMachine : ${machines}">
+	<td th:text="${currentMachine.id}" />
+	<td th:text="${currentMachine.details}" />
+	<td><a th:href="@{/viewItems/{id}(id=${currentMachine.id})}">View Vendor Items</a></td>
+</tr>
+</table>
+</form>
 <br />
-<a href="viewAllAdmin">Admin</a>
+<a href="viewAllAdmin">Admin Page</a>
 <br />
 </body>
 </html>

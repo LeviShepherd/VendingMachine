@@ -32,16 +32,6 @@ public class WebController {
 	ItemRepository itemRepo;
 	User user = new User();
 	
-	@GetMapping({ "viewAll" })
-	public String viewAllMachines(Model model) {
-		if(vendingRepo.findAll().isEmpty()) {
-			return addNewMachine(model);
-		}
-		
-		model.addAttribute("machines", vendingRepo.findAll());
-		return "vendors.html";
-	}
-	
 	@GetMapping({ "viewAllAdmin" })
 	public String viewAllMachinesAdmin(Model model) {
 		if(vendingRepo.findAll().isEmpty()) {
@@ -73,7 +63,7 @@ public class WebController {
 		System.out.println(m);
 		model.addAttribute("newMachine", m);
 		
-		return "input-machine.html";
+		return "update-machine.html";
 	}
 	
 	@PostMapping("/updateMachine/{id}")
@@ -95,11 +85,26 @@ public class WebController {
 		return viewAllMachinesAdmin(model);
 	}
 	
-	@GetMapping("/viewItems/{id}")
+	@GetMapping("/buyItem/{id}/{index}") 
+	public String buyItem(@PathVariable("id") long id, @PathVariable("index") long index, Model model) {
+		
+		Machine machine = vendingRepo.findById(id).orElse(null);
+		Item item = itemRepo.findById(index).orElse(null);
+		
+		user.addItems(item);
+		machine.removeItem(item);
+		vendingRepo.save(machine);
+		itemRepo.delete(item);
+		
+		return viewItems(id, model);
+	}
+	
+	@GetMapping({("/viewItems/{id}")})
 	public String viewItems(@PathVariable("id") long id, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
 		List<Item> items = m.getItems();
 		model.addAttribute("items", items);
+		model.addAttribute("currentMachine", m);
 		
 		return "items.html";
 	}
@@ -117,7 +122,9 @@ public class WebController {
 	@PostMapping("/addItem/{id}")
 	public String addItem(@PathVariable("id") long id, @ModelAttribute Item i, Model model) {
 		Machine m = vendingRepo.findById(id).orElse(null);
-		
+		List<Item> items = itemRepo.findAll();
+		Item item = items.get(items.size() - 1);
+		i.setId(item.getId() + 1);
 		itemRepo.save(i);
 		m.addItems(i);
 		vendingRepo.save(m);
@@ -135,7 +142,7 @@ public class WebController {
 		model.addAttribute("items", items);
 		model.addAttribute("currentMachine", m);
 		
-		return "items.html";
+		return "items-admin.html";
 	}
 	
 	@GetMapping("/deleteItem/{id}") 
@@ -151,7 +158,7 @@ public class WebController {
 		vendingRepo.save(m);
 		List<Item> items = m.getItems();
 		model.addAttribute("items", items);
-		return "items.html";
+		return "items-admin.html";
 	}
 	
 	@GetMapping("/makeTransaction/{id}")
@@ -159,8 +166,12 @@ public class WebController {
 		return null;
 	}
 	
-	@GetMapping({ "/", "Index" })
+	@GetMapping({ "/", "index" })
 	public String index(Model model) {
+		List<Machine> machines = vendingRepo.findAll();
+		
+		model.addAttribute("machines", machines);
+		
 		return "index.html";
 	}
 	
