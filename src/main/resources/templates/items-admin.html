@@ -2,10 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Vendor Items List</title>
+<style>
+	form {display: flex;
+		  align-items: center;
+		  flex-direction: column;}
+	</style>
 </head>
 <body>
-<h3>View Items</h3>
+<div class="container">
+	<div class="w3-container w3-green">
+		<h1 style="text-align: center">View Items</h1>
+		<h4 style="text-align: center">Admin</h4>
+	</div>
 <form>
 <table>
 <tr th:each="currentItem : ${items}">
@@ -15,7 +26,14 @@
 </tr>
 </table>
 </form>
-<a th:href="@{../addItem/{id}(id=${currentMachine.id})}">Add Items</a>
-<a href="../viewAllAdmin">Back To Vendors</a>
+<div style="text-align: center">
+<button type="button">
+	<a th:href="@{../addItem/{id}(id=${currentMachine.id})}">Add Items</a>
+</button>
+<button type="button">
+	<a href="../viewAllAdmin">Back To Vendors</a>
+</button>
+</div>
+</div>
 </body>
 </html>
