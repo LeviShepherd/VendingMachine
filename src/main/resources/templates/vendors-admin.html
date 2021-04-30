@@ -2,22 +2,57 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title>Vendors List</title>
+<style>
+	form {display: flex;
+		  align-items: center;
+		  flex-direction: column;}
+		  
+	.space {
+		margin-left: 15px;
+	}
+	
+	.bottomSpace{
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+	</style>
 </head>
 <body>
-<h3>View Vendors</h3>
+<div class="container">
+	<div class="w3-container w3-green">
+		<h1 style="text-align:center">View Vendors</h1>
+		<h4 style="text-align:center">Admin</h4>
+	</div>
+</div>
 <form>
-<table>
-<tr th:each="currentMachine : ${machines}">
-<td th:text="${currentMachine.id}" />
-<td th:text="${currentMachine.details}" />
-<td><a th:href="@{/editMachine/{id}(id=${currentMachine.id})}">Edit Vendor</a></td>
-<td><a th:href="@{/showEditItems/{id}(id=${currentMachine.id})}">Show Vendor Items</a>
-<td><a th:href="@{/deleteMachine/{id}(id=${currentMachine.id})}">Delete Vendor</a></td>
-</tr>
+	<table>
+		<h1>Select a vendor option:</h1>
+		<th>ID</th>
+		<th>Vendor</th>
+		<th>Edit</th>
+		<th>Vendor Items</th>
+		<th>Delete Vendor</th>
+		<tr th:each="currentMachine : ${machines}">
+			<td th:text="${currentMachine.id}" />
+			<td th:text="${currentMachine.details}" />
+			<td><a class="space" th:href="@{/editMachine/{id}(id=${currentMachine.id})}">Edit Vendor</a></td>
+			<td><a class="space" th:href="@{/showEditItems/{id}(id=${currentMachine.id})}">Show Vendor Items</a>
+			<td><a class="space" th:href="@{/deleteMachine/{id}(id=${currentMachine.id})}">Delete Vendor</a></td>
+		</tr>
 </table>
 </form>
-<a href="inputMachine">Add Vendors</a>
-<a href="index">User Page</a>
+<div style="text-align: center">
+<button class="bottomSpace" type="button">
+	<a href="inputMachine">Add Vendors</a>
+</button>
+<br />
+<button class="bottomSpace" type="button">
+	<a href="index">User Page</a>
+</button>
+<br />
+</div>
 </body>
 </html>
