@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-	<title>Vending Machine - Check Out</title>
+	<title>Vending Machine - User</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+	form {display: flex;
+		  align-items: center;
+		  flex-direction: column;}
+	</style>
 </head>
 <body>
 	<div class="container">
-		<h3>Items to check out</h3>
+		<div class="w3-container w3-green">
+			<h1>Vending Machine Program</h1>
+		</div>
 		<form>
+			<h3>Items to check out:</h3>
 			<table>
 				<tr th:each="currentItem : ${items}">
-					<td th:text="${currentItem.id}" />
 					<td th:text="${currentItem.description}" />
 					<td th:text="${currentItem.price}" />
 				</tr>
 			</table>
+		<h3>Total: $<span th:text="${cost}"></span></h3>
+		<br />
+		<button type="button">
+			<a href="../index">Complete Purchase</a>
+		</button>
+		<br />
 		</form>
-		<h3>Total: <span th:text="${cost}"></span></h3>
+		
 	</div>
 </body>
 </html>
