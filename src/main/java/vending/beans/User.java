@@ -30,4 +30,12 @@ public class User{
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
+	
+	public double getCost() {
+		double cost = 0;
+		for(Item i : items) {
+			cost += i.getPrice();
+		}
+		return cost;
+	}
 }
